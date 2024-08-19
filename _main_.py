@@ -7,6 +7,7 @@ from Grenad import Explosion
 from Box import ItemBox
 from Box import HealthBar
 
+
 def main():
     pygame.init()
 
@@ -32,7 +33,6 @@ def main():
     grenade_thrown = False
     scale = 3
 
-
     # load bullet images
     bullet_img = pygame.image.load('img/icons/bullet.png').convert_alpha()
     #load grenade image
@@ -46,7 +46,6 @@ def main():
         'Ammo': ammo_box_img,
         'Grenade': grenade_box_img
     }
-
 
     # define colours
     BG = (144, 201, 120)
@@ -84,7 +83,6 @@ def main():
                      SCREEN_WIDTH, SCREEN_HEIGHT, GRAVITY, 5, TILE_SIZE)
     health_bar = HealthBar(10, 10, player.health, player.health)
 
-
     enemy = Soldier('enemy', 400, 200, 1.5, 5, 20, screen,
                     SCREEN_WIDTH, SCREEN_HEIGHT, GRAVITY, 0, TILE_SIZE)
     enemy2 = Soldier('enemy', 300, 300, 1.5, 5, 20, screen,
@@ -99,7 +97,7 @@ def main():
 
         draw_bg()
         #show player health
-        health_bar.draw(player.health,  screen)
+        health_bar.draw(player.health, screen)
         #show ammo
         draw_text('AMMO: ', font, WHITE, 10, 35)
         for x in range(player.ammo):

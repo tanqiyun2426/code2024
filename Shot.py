@@ -23,7 +23,7 @@ class Bullet(pygame.sprite.Sprite):
                 player.health -= 5
                 self.kill()
 
-        if  type(enemy) == pygame.sprite.Group:
+        if type(enemy) == pygame.sprite.Group:
             for enemy_single in enemy:
                 if pygame.sprite.spritecollide(enemy_single, bullet_group, False):
                     if enemy_single.alive:
@@ -37,11 +37,23 @@ class Bullet(pygame.sprite.Sprite):
 
 
 def shot(place, Player, enemy, bullet_group, bullet_img, SCREEN_WIDTH):
+    #传入值：place:一个字典，包含x,y轴位置信息，direction方向
+    #       Player：攻击者，单个精灵
+    #       enemy：被攻击目标，单个精灵或者精灵组
+    #       buttle_group：子弹，精灵组
+    #       buttle_img：子弹图片
+    #       SCREEN_WIDTH：屏幕宽度
+
+    # 未传入位置时 返回
     if place == 'empty':
         return
+
+    #解析位置信息
     x = place['x']
     y = place['y']
     direction = place['direction']
+
+    #创建子弹bullet，并将其添加至bullet_group，然后运行bullet的update函数
     bullet = Bullet(x, y, direction, bullet_img, SCREEN_WIDTH)
     bullet_group.add(bullet)
     bullet.update(Player, enemy, bullet_group)
